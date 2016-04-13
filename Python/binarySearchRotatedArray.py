@@ -35,5 +35,5 @@ def binarySearchRotatedArray(A, lo, hi, n):
 
 
 
-A = [1,2,3,4,5,6,7]
+A = [4,5,6,7, 1,2,3]
 print binarySearchRotatedArray(A, 0, 6, 4)
