@@ -38,16 +38,20 @@ class Tree(object):
     def getHelper(self, root, data):
 
         if root == None:
-            return 0
+            return None
 
         if data == root.data:
             return root.count
 
         if data <= root.data:
-            return self.getHelper(root.left, data)
+            res = self.getHelper(root.left, data)
+            if res == None: return 0
+            return res
         else:
-            return self.getHelper(root.right, data)
-
+            res = self.getHelper(root.right, data)
+            if res == None:
+                return 0
+            return root.count + 1 + res
 
 tree = Tree()
 tree.add(5)
