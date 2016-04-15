@@ -40,5 +40,5 @@ def getBoxesHeight(boxes):
         res += box[1]
     return res
 
-boxes = [(10, 10), (1, 1), (10, 5), (8, 9), (1, 9)]
+boxes = [(10, 10), (5, 1), (4, 4), (5, 5), (10, 5), (8, 9), (1, 9)]
 print getTallestBoxes(boxes, [])
