@@ -6,17 +6,15 @@
 #          -1 if there is no duplicate int found
 #          -2 if the input violated our constraint
 #
-# Analysis: let A=[a_1, a_2...a_n], we'll loop over A once to cache each a_i to detect potential duplicate.
-#       I used a *Set data structure as a caching mechanism. We could potentially cache upto a_n which
-#       yield space complexity to be O(N). Similarly, the runtime complexity is O(N) because we need to
-#       loop over each a_i in A.
+# Analysis: Assume that the input Array has a fixed length of 1,000,000 as suggested in the premise. 
+#       let A=[a_1, a_2...a_999,999], we'll loop over A once to cache each a_i to detect potential duplicate.
+#       I used a *Set data structure as a caching mechanism. We could potentially cache upto a_999,999 which 
+#       yield space complexity to be O(c). Similarly, the runtime complexity is O(c) because the input size is fixed.
 #
 #       *Footnote* If there is a constraint on memory or we just need to optimize for space, we could allocate
-#           an array of bit, B=[b_0, b_1,..., b_999,999] where each b_i represent x between 1 and 1,000,000. 
-#           Therefore, one byte could represent 8 a_i's. Space complexity would still be O(N) since it grows 
-#           with respect to A. Say each int throws into a Set cost 4 bytes, we could use it to 
-#           respresent up to 4 * 8 bits in B. If a Set data structure cost C * f(n) then with Bit Vector, we
-#           can bound the space complexity with cost roughly C/k * f(n) where k has the lower bound of 8.
+#           an array of bit, B=[b_0, b_1,..., b_999,999] where each b_i maps to an element between 1 and 1,000,000.
+#           Therefore, one byte could represent 8 a_i's. Space complexity would still be O(c) but we can save 
+#           by a constant factor of k with a lower bound of 8. Before: c * 1,000,000 -> Now: c/k * 1,000,000.
 
 def findDuplicate(nums):
     if nums == None or len(nums) != 1000000:
