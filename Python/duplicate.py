@@ -6,8 +6,17 @@
 #          -1 if there is no duplicate int found
 #          -2 if the input violated our constraint
 #
-# Runtime Complexity: O(N)
-# Space Complexity: O(N)
+# Analysis: let A=[a_1, a_2...a_n], we'll loop over A once to cache each a_i to detect potential duplicate.
+#       I used a *Set data structure as a caching mechanism. We could potentially cache upto a_n which
+#       yield space complexity to be O(N). Similarly, the runtime complexity is O(N) because we need to
+#       loop over each a_i in A.
+#
+#       *Footnote* If there is a constraint on memory or we just need to optimize for space, we could allocate
+#           an array of bit, B=[b_0, b_1,..., b_999,999] where each b_i represent x between 1 and 1,000,000. 
+#           Therefore, one byte could represent 8 a_i's. Space complexity would still be O(N) since it grows 
+#           with respect to A. Say each int throws into a Set cost 4 bytes, we could use it to 
+#           respresent up to 4 * 8 bits in B. If a Set data structure cost C * f(n) then with Bit Vector, we
+#           can bound the space complexity with cost roughly C/k * f(n) where k has the lower bound of 8.
 
 def findDuplicate(nums):
     if nums == None or len(nums) != 1000000:
@@ -52,8 +61,10 @@ assert(findDuplicate(nums) == 1)
 #          -1 if no none-repeating character found
 #          -2 if the input violated our constraint
 #
-# Runtime Complexity: O(N)
-# Space Complexity: O(N)
+# Analysis: let C=[c_1, c_2...c_n], we'll loop over C once in order to cache all occurances of c_i. I used a map data structure 
+#       as a caching mechanism. We need to cache upto c_n which yield the space complexity to be O(N). 
+#       Similarly, the runtime complexity is O(N) because we need to loop for each c_i in C.
+
 def findFirstNonRepeatingCharacter(chars):
     if chars == None or not isinstance(chars, str):
         return -2
